@@ -1,0 +1,40 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+EXTRA_COMMANDS="sclock"
+EXTRA_HELP="	sclock	Start or set the clock"
+
+sclock(){
+
+	second=$(date "+%S")
+
+	while [[ $second != "00" ]]; do
+
+		second=$(date "+%S")
+		sleep 1
+
+	done
+
+	hour=$(date "+%H" | sed 's/^0//')
+	minute=$(date "+%M" | sed 's/^0//')
+
+	pretime="\x1B\x3D\x02\x1F\x43\x00\x1F\x54"
+	hextime=$(printf "\\x%02x\\x%02x" $hour $minute)
+	command="${pretime}${hextime}"
+
+	printf $command $hour $minute > /dev/ttyUSB0
+
+}
+
+boot(){
+
+	modprobe ftdi_sio
+	echo 1208 0780 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id
+	usbreset 001/002
+
+	sleep 5
+	stty -F /dev/ttyUSB0 19200
+
+	sclock
+
+}
