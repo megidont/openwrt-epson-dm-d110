@@ -1,6 +1,8 @@
 # openwrt-epson-dm-d110
 A very simple init script and set of instructions by which to set up an epson DM-D110 customer pole display as a vaccuum-fluorescent display clock attached to your openwrt device.
 
+<img width="4080" height="3072" alt="A customer pole display showing 15:07 atop a beige PC tower, connected by black cable to a nearby wireless access point." src="https://github.com/user-attachments/assets/d3d7802c-6ca0-421d-abb4-4358c3687ce0" />
+
 I've set this up on a pair of TPLink Archer C7's and decided to share the instructions all in one place for anyone who... wants a customer pole display clock in their living room, I guess.
 
 You'll need to add kernel modules for the FTDI USB Serial interface in the display, and `stty` to re-configure the serial port. Drop the script in, enable it, and add an entry to your crontab to periodically reset the clock (it will drift otherwise!).
