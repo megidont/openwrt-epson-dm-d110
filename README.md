@@ -22,8 +22,8 @@ Sometimes you set it all up and it doesn't work. This is probably because this s
 1. Install `usbutils` package
 2. Run `lsusb` and take note of the entry `Bus [BBB] Device [DDD]: ID [VVVV]:[PPPP] SEIKO EPSON USB Edition of DM-D110`
 3. edit `zzz-dmd110setup` to replace `1208` with `[VVVV]`, `0780` with `[PPPP]`, `001` with `[BBB]`, and `002` with `[DDD]`
-4. Either adjust baudrate of display via DIP switch to 19200 OR adjust baudrate set by stty in the script
-5. ¯\_(ツ)_/¯
+4. Either adjust baudrate of display via DIP switch to 19200 OR adjust baudrate set by `stty` in the script
+5. ¯\\_(ツ)_/¯
 
 ## Notes
 The DM-D110's time counter is not very accurate, and will drift over time -- for accuracy's sake, I've included instructions to re-start the clock at midnight for calibration. Adjust the time in the crontab entry accordingly if you're a night owl and don't want to experience interruptions!
